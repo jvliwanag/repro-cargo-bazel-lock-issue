@@ -1,5 +1,5 @@
 {
-  "checksum": "ac79d94b94525748751ed3bad8050f9bb5119fc440af44e9a22fadc0586df2ca",
+  "checksum": "5bd4f4005ded72f3640f541ab5c4a5b5ef1952d3fd39d52310d0a562c1a54893",
   "crates": {
     "aho-corasick 1.1.2": {
       "name": "aho-corasick",
@@ -472,12 +472,6 @@
         "compile_data_glob": [
           "**"
         ],
-        "crate_features": {
-          "common": [
-            "std"
-          ],
-          "selects": {}
-        },
         "deps": {
           "common": [],
           "selects": {
@@ -824,13 +818,6 @@
         "compile_data_glob": [
           "**"
         ],
-        "crate_features": {
-          "common": [
-            "extra_traits",
-            "std"
-          ],
-          "selects": {}
-        },
         "deps": {
           "common": [
             {
@@ -875,6 +862,16 @@
         "compile_data_glob": [
           "**"
         ],
+        "crate_features": {
+          "common": [
+            "elf",
+            "errno",
+            "general",
+            "ioctl",
+            "no_std"
+          ],
+          "selects": {}
+        },
         "edition": "2021",
         "version": "0.4.10"
       },
