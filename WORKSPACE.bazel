@@ -16,10 +16,12 @@ rules_rust_dependencies()
 
 rust_register_toolchains(
     edition = "2021",
-    versions=["1.73.0"],
+    versions = ["1.73.0"],
 )
 
+load("@rules_rust//crate_universe:defs.bzl", "crate")
 load("@rules_rust//crate_universe:repositories.bzl", "crate_universe_dependencies")
+
 crate_universe_dependencies()
 
 load("@rules_rust//crate_universe:defs.bzl", "crates_repository")
@@ -33,7 +35,32 @@ crates_repository(
     manifests = [
         "//:Cargo.toml",
     ],
+    annotations = {
+        # Workaround for https://github.com/bazelbuild/rules_rust/issues/2212
+        # We define all the features across platforms here
+        "errno": [crate.annotation(
+            crate_features = [
+                "std",
+            ],
+        )],
+        "libc": [crate.annotation(
+            crate_features = [
+                "extra_traits",
+                "std",
+            ],
+        )],
+        "linux-raw-sys": [crate.annotation(
+            crate_features = [
+                "elf",
+                "errno",
+                "general",
+                "ioctl",
+                "no_std",
+            ],
+        )],
+    },
 )
 
 load("@crate_index//:defs.bzl", "crate_repositories")
+
 crate_repositories()
